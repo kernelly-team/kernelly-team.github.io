@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kernelly — AI &amp; Automation Studio</title>
+<meta name="description" content="Kernelly builds practical AI systems for small teams. Six services, one studio. First pilot free — you judge the result before any money changes hands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#101012;
+  --bg2:#161619;
+  --ink:#ECEAE4;
+  --muted:#8f8f96;
+  --faint:#5b5b62;
+  --line:rgba(236,234,228,.14);
+  --teal:#4CC9A8;
+  --amber:#E5A83B;
+  --pink:#E583B8;
+  --coral:#E8836B;
+  --blue:#7FA8D9;
+  --purple:#9B8AE8;
+  --display:'Oswald',sans-serif;
+  --body:'Inter',sans-serif;
+  --mono:'Space Mono',monospace;
+  --serif:'Instrument Serif',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ink);color:var(--bg)}
+
+/* ---------- HUD nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:18px 32px;background:linear-gradient(to bottom,rgba(16,16,18,.92),rgba(16,16,18,.75) 70%,transparent);backdrop-filter:blur(8px)}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);
+  padding:7px 14px;border-radius:999px;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{background:var(--ink);color:var(--bg);font-weight:700}
+.nav-mark{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--muted)}
+.nav-mark b{color:var(--ink)}
+
+/* ---------- shared chrome ---------- */
+.meta-row{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--faint);padding:0 32px;border-bottom:1px solid var(--line);height:44px}
+.meta-row .cross{color:var(--faint)}
+section{position:relative;padding:90px 32px 0}
+.micro{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.display{font-family:var(--display);text-transform:uppercase;line-height:.92;letter-spacing:-.01em;color:var(--ink)}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400}
+
+/* footer metadata strip (deck signature) */
+.foot-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:80px;border-top:1px solid var(--line)}
+.foot-cell{padding:14px 18px 40px;border-right:1px solid var(--line);position:relative}
+.foot-cell:last-child{border-right:none}
+.foot-cell .tick{position:absolute;top:-1px;left:0;font-family:var(--mono);font-size:9px;color:var(--faint);letter-spacing:.2em}
+.foot-cell .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin:22px 0 26px}
+.foot-cell .val{font-family:var(--body);font-weight:600;font-size:clamp(15px,1.6vw,22px);color:var(--ink)}
+
+/* ---------- hero ---------- */
+#home{min-height:100svh;display:flex;flex-direction:column;padding-top:0}
+#home .meta-row{margin-top:64px}
+.hero-mid{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:60px 0 30px}
+.hero-word{display:flex;align-items:center;justify-content:center;gap:2vw;width:100%}
+.hero-word .half{font-family:var(--display);font-weight:700;font-size:clamp(70px,15.5vw,230px);line-height:.9;text-transform:uppercase;color:var(--ink)}
+.k-tile{width:clamp(64px,11vw,170px);height:clamp(88px,14.5vw,225px);border:1px solid var(--line);position:relative;
+  display:flex;flex-direction:column;justify-content:space-between;padding:12px;flex:none}
+.k-tile .k{font-family:var(--serif);font-style:normal;font-size:clamp(34px,5.5vw,84px);color:var(--ink);align-self:center;margin-top:6px}
+.k-tile .tag{font-family:var(--mono);font-size:clamp(5px,.7vw,9px);letter-spacing:.34em;text-transform:uppercase;color:var(--teal);white-space:nowrap}
+.k-tile::before,.k-tile::after{content:'+';position:absolute;font-family:var(--mono);font-size:12px;color:var(--faint)}
+.k-tile::before{top:-14px;left:-8px}
+.k-tile::after{bottom:-16px;right:-8px}
+.hero-sub{display:flex;justify-content:space-between;width:100%;padding:26px 8px 0;gap:20px}
+.hero-sub .left b{display:block;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(15px,1.8vw,24px)}
+.hero-sub .left span,.hero-sub .right span{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.hero-sub .right{text-align:right}
+.hero-sub .right b{display:block;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(15px,1.8vw,24px)}
+
+/* ---------- studio ---------- */
+.studio-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.studio-head h2{font-size:clamp(56px,9vw,140px);font-weight:600}
+.studio-head .right{font-family:var(--mono);font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);padding-bottom:18px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px}
+.tri .cell{border-top:1px solid var(--line);padding:22px 26px 10px 0;position:relative}
+.tri .cell + .cell{padding-left:26px;border-left:1px solid var(--line)}
+.tri .num{font-family:var(--mono);font-size:10px;color:var(--teal);letter-spacing:.3em}
+.tri h3{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin:10px 0 14px}
+.tri p{font-size:14px;line-height:1.65;color:#b9b7b1;max-width:34ch}
+
+/* ---------- pilot ---------- */
+#pilot .pilot-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:60px}
+.pilot-title{font-size:clamp(60px,8.4vw,150px);font-weight:700}
+.pilot-free{font-size:clamp(48px,6.4vw,110px);font-weight:700;color:var(--coral);margin-top:26px}
+.pilot-free small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.brief .q{font-family:var(--body);font-weight:600;font-size:clamp(18px,2vw,26px);margin-bottom:34px}
+.brief-item{border-top:1px solid var(--line);padding:18px 0 20px}
+.brief-item .num{font-family:var(--mono);font-size:10px;color:var(--coral);letter-spacing:.3em}
+.brief-item h3{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin:8px 0 10px}
+.brief-item p{font-size:14px;line-height:1.65;color:#b9b7b1}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:70px}
+.steps .cell{border-top:1px solid var(--line);padding:22px 26px 10px 0}
+.steps .cell + .cell{padding-left:26px;border-left:1px solid var(--line)}
+.steps .n{font-family:var(--display);font-weight:700;font-size:44px}
+.steps .n.c1{color:var(--teal)}.steps .n.c2{color:var(--coral)}.steps .n.c3{color:var(--purple)}
+.steps h3{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);margin:8px 0 12px}
+.steps p{font-size:13.5px;line-height:1.65;color:#b9b7b1}
+
+/* ---------- services ---------- */
+.svc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.svc-head h2{font-size:clamp(54px,8.6vw,140px);font-weight:700}
+.svc-head .serif{font-size:clamp(20px,2.4vw,34px);color:#c9c7c1;padding-bottom:14px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.svc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 24px 30px;position:relative;min-height:300px;
+  display:flex;flex-direction:column;transition:background .25s}
+.svc:hover{background:var(--bg2)}
+.svc .top{display:flex;justify-content:space-between;align-items:center}
+.svc .n{font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--faint)}
+.svc .dot{width:8px;height:8px;border-radius:50%}
+.svc h3{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(22px,2vw,30px);line-height:1.05;margin:22px 0 12px}
+.svc .tagline{font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.svc p{font-size:13px;line-height:1.6;color:#b0aea8}
+.svc .pilot-ex{margin-top:auto;padding-top:18px;font-size:11.5px;line-height:1.55;color:var(--faint)}
+.svc .pilot-ex b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;font-weight:400}
+.svc:nth-child(1) .pilot-ex b{color:var(--teal)}.svc:nth-child(2) .pilot-ex b{color:var(--amber)}
+.svc:nth-child(3) .pilot-ex b{color:var(--pink)}.svc:nth-child(4) .pilot-ex b{color:var(--coral)}
+.svc:nth-child(5) .pilot-ex b{color:var(--blue)}.svc:nth-child(6) .pilot-ex b{color:var(--purple)}
+.d1{background:var(--teal)}.d2{background:var(--amber)}.d3{background:pink;background:var(--pink)}
+.d4{background:var(--coral)}.d5{background:var(--blue)}.d6{background:var(--purple)}
+
+/* illustrative mockup */
+.mock{margin-top:70px;border:1px solid var(--line);padding:26px;position:relative;background:var(--bg2)}
+.mock .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:22px}
+.mock::before,.mock::after{content:'+';position:absolute;font-family:var(--mono);font-size:12px;color:var(--faint)}
+.mock::before{top:-8px;left:-5px}.mock::after{bottom:-9px;right:-5px}
+.chat{max-width:520px;display:flex;flex-direction:column;gap:12px}
+.chat .from{font-family:var(--mono);font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--faint)}
+.chat .bub{border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:13.5px;color:#d8d6d0;max-width:85%}
+.chat .bub.assistant{border-color:rgba(76,201,168,.45);background:rgba(76,201,168,.07)}
+.chat .bub.done{border-style:dashed;font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--teal)}
+.mock .note{margin-top:22px;font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
+
+/* ---------- contact ---------- */
+#contact{text-align:center;padding-bottom:0}
+#contact .grat{font-family:var(--mono);font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--faint)}
+#contact .thank{font-family:var(--serif);font-size:clamp(60px,9vw,150px);margin:26px 0 10px;font-weight:400}
+#contact .brand{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.34em;font-size:clamp(16px,2vw,26px);margin-top:26px}
+#contact .who{font-family:var(--mono);font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-top:30px}
+#contact a.mail{display:inline-block;font-family:var(--mono);font-size:clamp(12px,1.6vw,17px);letter-spacing:.22em;text-transform:uppercase;
+  color:var(--teal);margin-top:14px;border-bottom:1px solid rgba(76,201,168,.4);padding-bottom:6px}
+#contact a.mail:hover{color:var(--ink);border-color:var(--ink)}
+#contact .addr{font-family:var(--mono);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint);margin-top:22px}
+#contact .honest{font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-top:46px;line-height:2}
+.bigk{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden}
+.bigk span{font-family:var(--serif);font-size:clamp(300px,44vw,640px);color:rgba(236,234,228,.045);line-height:1}
+#contact .inner{position:relative;padding:40px 0 20px}
+
+/* ---------- responsive ---------- */
+@media(max-width:960px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  #pilot .pilot-wrap{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:680px){
+  nav{padding:14px 16px}
+  .nav-links a{padding:6px 9px;letter-spacing:.18em;font-size:9px}
+  .nav-mark{display:none}
+  .meta-row{padding:0 16px}
+  section{padding:70px 16px 0}
+  .svc-grid{grid-template-columns:1fr}
+  .tri,.steps{grid-template-columns:1fr}
+  .tri .cell + .cell,.steps .cell + .cell{border-left:none;padding-left:0}
+  .foot-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-cell:nth-child(2){border-right:none}
+  .foot-cell{border-bottom:1px solid var(--line)}
+  .hero-sub{flex-direction:column;gap:16px}
+  .hero-sub .right{text-align:left}
+  .k-tile .tag{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-links">
+    <a href="#home" class="active">Home</a>
+    <a href="#studio">Studio</a>
+    <a href="#pilot">Pilot</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-mark"><b>KERNELLY</b> — AI &amp; AUTOMATION STUDIO</div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="home">
+  <div class="meta-row"><span class="cross">+ (01)</span><span>Cover</span><span>2026 / Edition +</span></div>
+  <div class="hero-mid">
+    <div class="hero-word">
+      <span class="half">Kern</span>
+      <span class="k-tile"><span class="k">K.</span><span class="tag">AI &amp; Automation Studio</span></span>
+      <span class="half">elly</span>
+    </div>
+    <div class="hero-sub">
+      <div class="left"><b>Kernelly</b><span>Practical AI systems for small teams</span></div>
+      <div class="right"><b>Six Services</b><span>Selected work + free pilot</span></div>
+    </div>
+  </div>
+  <div class="foot-grid">
+    <div class="foot-cell"><span class="tick">01</span><div class="lbl">Studio</div><div class="val">2026 Edition</div></div>
+    <div class="foot-cell"><span class="tick">02</span><div class="lbl">Discipline</div><div class="val">AI &amp; Automation</div></div>
+    <div class="foot-cell"><span class="tick">03</span><div class="lbl">Inside</div><div class="val">Services 01 to 06</div></div>
+    <div class="foot-cell"><span class="tick">04</span><div class="lbl">Offer</div><div class="val">Free Pilot First</div></div>
+  </div>
+</section>
+
+<!-- ============ STUDIO ============ -->
+<section id="studio">
+  <div class="meta-row" style="padding:0;margin-bottom:60px"><span class="cross">+ (02)</span><span>Studio</span><span>About +</span></div>
+  <div class="studio-head">
+    <h2 class="display">Kernelly</h2>
+    <div class="right">AI &amp;&nbsp; Automation &nbsp;Studio</div>
+  </div>
+  <div class="tri">
+    <div class="cell">
+      <span class="num">01</span>
+      <h3>The Studio</h3>
+      <p>Kernelly builds AI systems that do one job well inside a small business. A new studio, and we say so: no invented clients, no invented results.</p>
+    </div>
+    <div class="cell">
+      <span class="num">02</span>
+      <h3>The Tools</h3>
+      <p>Proven tools, not big-platform promises. AI models for language, n8n for automation, your own data as the source.</p>
+    </div>
+    <div class="cell">
+      <span class="num">03</span>
+      <h3>The Base</h3>
+      <p>Cairo, Egypt. Working with small teams anywhere, remote-friendly.</p>
+    </div>
+  </div>
+  <div class="foot-grid">
+    <div class="foot-cell"><span class="tick">01</span><div class="lbl">Experience</div><div class="val">A New Studio</div></div>
+    <div class="foot-cell"><span class="tick">02</span><div class="lbl">Regions</div><div class="val">Cairo + Remote</div></div>
+    <div class="foot-cell"><span class="tick">03</span><div class="lbl">Focus</div><div class="val">Small Teams</div></div>
+    <div class="foot-cell"><span class="tick">04</span><div class="lbl">Tools</div><div class="val">AI Models + n8n</div></div>
+  </div>
+</section>
+
+<!-- ============ PILOT ============ -->
+<section id="pilot">
+  <div class="meta-row" style="padding:0;margin-bottom:60px"><span class="cross">+ (03)</span><span>Pilot</span><span>The Offer +</span></div>
+  <div class="pilot-wrap">
+    <div>
+      <h2 class="display pilot-title">First Pilot<br>Free</h2>
+      <div class="display pilot-free">Free<small>No payment &nbsp;/&nbsp; No commitment &nbsp;/&nbsp; Keep what we build</small></div>
+    </div>
+    <div class="brief">
+      <div class="q">You judge the result before any money changes hands.</div>
+      <div class="brief-item"><span class="num">01</span><h3>The Offer</h3><p>We build a real pilot for one workflow, free. No payment, no commitment.</p></div>
+      <div class="brief-item"><span class="num">02</span><h3>The Scope</h3><p>One workflow, scoped small, built with your real data and tools. Working in days, not months.</p></div>
+      <div class="brief-item"><span class="num">03</span><h3>After</h3><p>If it proves useful, we agree on a paid plan. If not, you keep what we built and owe nothing.</p></div>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="cell"><div class="n c1">01</div><h3>We study one workflow</h3><p>A short call about where your team loses time. We pick the one workflow where a pilot can prove itself fast.</p></div>
+    <div class="cell"><div class="n c2">02</div><h3>We build it, free</h3><p>A working pilot in days, not months, built with your real data and tools. No payment, no commitment.</p></div>
+    <div class="cell"><div class="n c3">03</div><h3>You judge the result</h3><p>If it proves useful, we agree on a paid plan. If not, you keep what we built and owe nothing.</p></div>
+  </div>
+  <div class="foot-grid">
+    <div class="foot-cell"><span class="tick">01</span><div class="lbl">Offer</div><div class="val">First Pilot Free</div></div>
+    <div class="foot-cell"><span class="tick">02</span><div class="lbl">Scope</div><div class="val">One Workflow</div></div>
+    <div class="foot-cell"><span class="tick">03</span><div class="lbl">Payment</div><div class="val">Only If It Works</div></div>
+    <div class="foot-cell"><span class="tick">04</span><div class="lbl">Commitment</div><div class="val">None</div></div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="meta-row" style="padding:0;margin-bottom:60px"><span class="cross">+ (04)</span><span>Services</span><span>Six Systems +</span></div>
+  <div class="svc-head">
+    <h2 class="display">Six Services</h2>
+    <div class="serif">Six systems, one studio.</div>
+  </div>
+  <div class="svc-grid">
+    <div class="svc">
+      <div class="top"><span class="n">01</span><span class="dot d1"></span></div>
+      <h3>AI Customer Chat Assistants</h3>
+      <div class="tagline">WhatsApp + Website</div>
+      <p>Customers wait hours for answers you repeat every day. An assistant trained on your own FAQs, price lists, and policies replies in seconds, and hands off to a human when it cannot help. You approve every answer source before it goes live.</p>
+      <div class="pilot-ex"><b>Example Pilot</b>A booking assistant for a clinic: hours, prices, appointments, all day. (Illustration, not a past client.)</div>
+    </div>
+    <div class="svc">
+      <div class="top"><span class="n">02</span><span class="dot d2"></span></div>
+      <h3>Workflow Automation</h3>
+      <div class="tagline">n8n</div>
+      <p>Your team loses hours to copy-paste work between apps. We rebuild the routine as an n8n automation that runs on its own: data moved, sheets updated, invoices generated. A simple runbook, so you are never locked in.</p>
+      <div class="pilot-ex"><b>Example Pilot</b>New orders land in a tracking sheet, customers get confirmations, you get a daily summary. (Illustration, not a past client.)</div>
+    </div>
+    <div class="svc">
+      <div class="top"><span class="n">03</span><span class="dot d3"></span></div>
+      <h3>Content Automation</h3>
+      <div class="tagline">On-brand posts + product content</div>
+      <p>Consistent content dies to the daily grind. A pipeline drafts on-brand posts from your own notes and past content, on a weekly rhythm. You review every draft before anything ships.</p>
+      <div class="pilot-ex"><b>Example Pilot</b>A week of post drafts every Sunday, in one document, ready for your review. (Illustration, not a past client.)</div>
+    </div>
+    <div class="svc">
+      <div class="top"><span class="n">04</span><span class="dot d4"></span></div>
+      <h3>Lead Research &amp; Follow-up</h3>
+      <div class="tagline">Real prospects + tracked follow-ups</div>
+      <p>Good prospects slip by unresearched and unfollowed. A list of real, publicly reachable prospects, each with a source and a fit note, and every follow-up tracked. Draft first messages you can edit and own.</p>
+      <div class="pilot-ex"><b>Example Pilot</b>Fifty businesses that publicly asked for your kind of help, each with a contact route. (Illustration, not a past client.)</div>
+    </div>
+    <div class="svc">
+      <div class="top"><span class="n">05</span><span class="dot d5"></span></div>
+      <h3>Reporting Dashboards</h3>
+      <div class="tagline">Your numbers in one live view</div>
+      <p>Your numbers live in five places, and none are current. One live dashboard pulls from your sheets, store, and ad accounts, around the few numbers you actually decide on. A plain-language summary lands in your inbox on a schedule.</p>
+      <div class="pilot-ex"><b>Example Pilot</b>This week's sales, top products, and ad spend vs last week, refreshed every Monday. (Illustration, not a past client.)</div>
+    </div>
+    <div class="svc">
+      <div class="top"><span class="n">06</span><span class="dot d6"></span></div>
+      <h3>First-Run Onboarding</h3>
+      <div class="tagline">New users reach their first win</div>
+      <p>New users drift away before their first win. A screen-by-screen teardown of the first run, then fixes: checklists, emails, in-product nudges. Judged on your own activation numbers.</p>
+      <div class="pilot-ex"><b>Example Pilot</b>A SaaS first-15-minutes teardown: three drop-off points and a concrete fix for each. (Illustration, not a past client.)</div>
+    </div>
+  </div>
+
+  <div class="mock">
+    <div class="lbl">Illustrative system mockup — not a client project</div>
+    <div class="chat">
+      <span class="from">Customer</span>
+      <div class="bub">Do you deliver to Nasr City?</div>
+      <span class="from" style="text-align:right">Kernelly Assistant</span>
+      <div class="bub assistant" style="align-self:flex-end">Yes, delivery takes 45–60 min. Want me to book a slot?</div>
+      <div class="bub done">Booked — Thu 5:30 PM</div>
+    </div>
+    <div class="note">Service 01 — AI customer chat assistant — WhatsApp + Website</div>
+  </div>
+
+  <div class="foot-grid">
+    <div class="foot-cell"><span class="tick">01</span><div class="lbl">Services</div><div class="val">01 to 06</div></div>
+    <div class="foot-cell"><span class="tick">02</span><div class="lbl">Model</div><div class="val">Free Pilot First</div></div>
+    <div class="foot-cell"><span class="tick">03</span><div class="lbl">Scope</div><div class="val">One Workflow Each</div></div>
+    <div class="foot-cell"><span class="tick">04</span><div class="lbl">Tools</div><div class="val">AI + n8n + Data</div></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="meta-row" style="padding:0"><span class="cross">+ (05)</span><span>Contact</span><span>Start a Pilot +</span></div>
+  <div class="inner">
+    <div class="bigk"><span>K</span></div>
+    <div class="grat">With gratitude</div>
+    <div class="thank serif">Thank you</div>
+    <div class="brand">Kernelly</div>
+    <div class="who">Farouk Hady — Founder</div>
+    <a class="mail" href="mailto:kernelly.team@gmail.com">kernelly.team@gmail.com</a>
+    <div class="addr">Building 30, Street 9, El Mokattam, Cairo, Egypt</div>
+    <div class="honest">A new studio. No invented clients, no invented results.<br>Every mockup on this page is labelled illustrative.</div>
+  </div>
+  <div class="foot-grid" style="text-align:left">
+    <div class="foot-cell"><span class="tick">01</span><div class="lbl">Founder</div><div class="val">Farouk Hady</div></div>
+    <div class="foot-cell"><span class="tick">02</span><div class="lbl">Email</div><div class="val">kernelly.team</div></div>
+    <div class="foot-cell"><span class="tick">03</span><div class="lbl">Based in</div><div class="val">Cairo, Egypt</div></div>
+    <div class="foot-cell"><span class="tick">04</span><div class="lbl">Portfolio</div><div class="val">2026</div></div>
+  </div>
+</section>
+
+<script>
+// nav active state on scroll
+const secs=[...document.querySelectorAll('section')];
+const links=[...document.querySelectorAll('.nav-links a')];
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){
+    links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+  }});
+},{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
