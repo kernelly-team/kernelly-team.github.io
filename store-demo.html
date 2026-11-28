@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roast &amp; Co — coffee gear</title>
+<style>
+:root{--ink:#1b1a17;--muted:#6b655c;--accent:#b4552d;--bg:#fbf8f4;--line:#e8e0d5}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+.bar{background:var(--ink);color:#f6f1e9;text-align:center;font-size:12.5px;letter-spacing:.06em;padding:9px;text-transform:uppercase}
+header{position:sticky;top:0;background:rgba(251,248,244,.94);border-bottom:1px solid var(--line);z-index:20;backdrop-filter:blur(6px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:Georgia,serif;font-size:24px;letter-spacing:.02em}
+nav ul{display:flex;gap:28px;list-style:none;font-size:14px;color:var(--muted)}
+nav a{color:inherit;text-decoration:none}
+.icons{display:flex;gap:18px;font-size:18px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;border-bottom:1px solid var(--line)}
+.hero .copy{padding:76px 40px 76px 0}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-family:Georgia,serif;font-size:52px;line-height:1.12;margin:16px 0 18px;letter-spacing:-.5px}
+.hero p{color:var(--muted);font-size:16.5px;max-width:44ch}
+.btn{display:inline-block;background:var(--ink);color:#fff;padding:14px 26px;border-radius:2px;text-decoration:none;font-size:14px;letter-spacing:.04em;margin-top:26px}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--ink);margin-left:10px}
+.hero .art{background:linear-gradient(160deg,#2c2721,#6a4a33 60%,#c07a45);position:relative;min-height:460px}
+.hero .art:after{content:"ROAST & CO";position:absolute;inset:auto 0 34px 0;text-align:center;color:rgba(255,255,255,.85);font-family:Georgia,serif;letter-spacing:.32em;font-size:15px}
+section{padding:70px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:30px}
+.head h2{font-family:Georgia,serif;font-size:32px}
+.head a{font-size:13.5px;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.product{background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:.2s}
+.product .thumb{height:190px;background:#efe7db;display:grid;place-items:center;font-size:44px}
+.product .body{padding:16px}
+.product h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.product .price{color:var(--accent);font-weight:700;font-size:15px}
+.product .rate{color:var(--muted);font-size:12.5px;margin-top:6px}
+.strip{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0}
+.strip .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.quote{background:var(--ink);color:#f3ece2;padding:64px 0;text-align:center}
+.quote blockquote{font-family:Georgia,serif;font-size:28px;line-height:1.45;max-width:760px;margin:0 auto}
+.quote span{display:block;margin-top:18px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#c9a98d}
+footer{padding:44px 0;font-size:13.5px;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.wa{position:fixed;left:20px;bottom:20px;background:#25d366;color:#fff;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:24px;text-decoration:none;box-shadow:0 12px 26px -10px rgba(37,211,102,.8);z-index:30}
+.demo-tag{position:fixed;right:14px;bottom:14px;background:#1b1a17;color:#e6d8c6;font-size:11.5px;padding:6px 10px;border-radius:6px;opacity:.85;z-index:30}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero .copy{padding:44px 0}.hero .art{min-height:280px}.grid{grid-template-columns:1fr 1fr}h1{font-size:36px}nav ul{display:none}}
+</style>
+</head>
+<body>
+<div class="bar">Free shipping over $60 · 30-day returns</div>
+<header><div class="wrap nav">
+  <div class="brand">Roast &amp; Co</div>
+  <nav><ul><li><a href="#">Shop</a></li><li><a href="#">Brew guides</a></li><li><a href="#">Subscriptions</a></li><li><a href="#">About</a></li></ul></nav>
+  <div class="icons">⌕ &nbsp; ♡ &nbsp; ⛬</div>
+</div></header>
+
+<div class="wrap"><div class="hero">
+  <div class="copy">
+    <div class="eyebrow">New season</div>
+    <h1>Better coffee starts with better gear.</h1>
+    <p>Hand-picked grinders, kettles and brewers for people who care how their morning tastes. Tested in our own kitchen, shipped the same day.</p>
+    <a class="btn" href="#">Shop the collection</a><a class="btn alt" href="#">Brew guides</a>
+  </div>
+  <div class="art"></div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="head"><h2>Best sellers</h2><a href="#">View all</a></div>
+  <div class="grid">
+    <div class="product"><div class="thumb">⏱</div><div class="body"><h3>Burr grinder S2</h3><div class="price">$149</div><div class="rate">Sample product</div></div></div>
+    <div class="product"><div class="thumb">☕</div><div class="body"><h3>Pour-over kettle</h3><div class="price">$89</div><div class="rate">Sample product</div></div></div>
+    <div class="product"><div class="thumb">🫖</div><div class="body"><h3>Ceramic dripper</h3><div class="price">$34</div><div class="rate">Sample product</div></div></div>
+    <div class="product"><div class="thumb">⚖</div><div class="body"><h3>Precision scale</h3><div class="price">$59</div><div class="rate">Sample product</div></div></div>
+  </div>
+</div></section>
+
+<div class="strip"><div class="wrap row"><div>🚚 Free shipping over $60</div><div>↺ 30-day returns</div><div>✓ 2-year warranty</div><div>💬 WhatsApp support</div></div></div>
+
+<div class="quote"><div class="wrap"><blockquote>"Sample testimonial — your customer's words go here."</blockquote><span>Placeholder review</span></div></div>
+
+<footer><div class="wrap foot"><div>© 2026 Roast &amp; Co — demo store</div><div>Shipping · Returns · Contact</div></div></footer>
+<a class="wa" href="https://wa.me/201000000000" aria-label="WhatsApp">💬</a>
+<div class="demo-tag">Demo build — Kernelly</div>
+</body></html>
