@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>عيادة سمايل لطب الأسنان</title>
+<style>
+:root{--ink:#0f2b33;--muted:#5b7378;--brand:#0f8f8a;--brand2:#0aa6a0;--bg:#f5fbfa;--card:#ffffff;--line:#dceceb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+header{background:rgba(255,255,255,.92);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(8px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+.logo .dot{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--brand),#39d6c9);display:grid;place-items:center;color:#fff;font-size:18px}
+nav ul{display:flex;gap:26px;list-style:none;font-size:15px;color:var(--muted)}
+nav a{color:inherit;text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;padding:12px 22px;border-radius:12px;text-decoration:none;font-weight:700;font-size:15px;border:0;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--brand);border:1.5px solid var(--brand)}
+.hero{padding:70px 0 60px;background:radial-gradient(1000px 420px at 85% -10%,#d9f6f3 0%,transparent 60%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#e5f7f5;color:#087a76;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700}
+h1{font-size:46px;line-height:1.25;margin:18px 0 14px;letter-spacing:-.5px}
+h1 span{color:var(--brand)}
+.lead{color:var(--muted);font-size:17px;max-width:46ch}
+.cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.stats{display:flex;gap:34px;margin-top:38px}
+.stats b{display:block;font-size:26px;color:var(--brand)}
+.stats span{font-size:13px;color:var(--muted)}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 24px 60px -30px rgba(15,43,51,.35)}
+.hero-card .row{display:flex;justify-content:space-between;align-items:center;padding:14px 4px;border-bottom:1px dashed var(--line);font-size:14px}
+.hero-card .row:last-child{border:0}
+.slot{background:#e9fbf9;color:#087a76;padding:6px 12px;border-radius:9px;font-weight:700;font-size:13px}
+section{padding:64px 0}
+.sec-head{text-align:center;margin-bottom:40px}
+.sec-head h2{font-size:32px}
+.sec-head p{color:var(--muted);margin-top:8px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.card .ic{width:46px;height:46px;border-radius:13px;background:#e9fbf9;display:grid;place-items:center;font-size:22px;margin-bottom:14px}
+.card h3{font-size:18px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14.5px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about .photo{height:330px;border-radius:22px;background:linear-gradient(140deg,#0f8f8a,#8fe3da);position:relative;overflow:hidden}
+.about .photo:after{content:"";position:absolute;inset:22px;border:2px dashed rgba(255,255,255,.55);border-radius:16px}
+.checks{list-style:none;margin-top:18px;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:#28484f}
+.checks i{color:var(--brand);font-style:normal;font-weight:800}
+.booking{background:#0f2b33;color:#eaf7f6;border-radius:26px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.booking h2{font-size:30px;margin-bottom:10px}
+.booking p{color:#a9c4c8;font-size:15px}
+form{display:grid;gap:12px}
+input,select,textarea{width:100%;padding:13px 14px;border-radius:11px;border:1px solid #2c4b53;background:#14343c;color:#eaf7f6;font-family:inherit;font-size:14.5px}
+input::placeholder,textarea::placeholder{color:#7e9ba1}
+form .btn{justify-content:center;margin-top:4px}
+footer{background:#0b222a;color:#8faeb2;padding:34px 0;font-size:13.5px}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.wa{position:fixed;inset-inline-start:22px;bottom:22px;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:26px;text-decoration:none;box-shadow:0 12px 28px -10px rgba(37,211,102,.8);z-index:30}
+.demo-tag{position:fixed;inset-inline-end:14px;bottom:14px;background:#0f2b33;color:#9fe9e2;font-size:11.5px;padding:6px 10px;border-radius:8px;opacity:.85;z-index:30}
+@media(max-width:900px){.hero-grid,.about,.booking{grid-template-columns:1fr}.cards{grid-template-columns:1fr}h1{font-size:34px}nav ul{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <div class="logo"><span class="dot">✦</span> عيادة سمايل</div>
+  <nav><ul><li><a href="#">الرئيسية</a></li><li><a href="#">خدماتنا</a></li><li><a href="#">الأطباء</a></li><li><a href="#">الأسعار</a></li><li><a href="#">اتصل بنا</a></li></ul></nav>
+  <a class="btn" href="#booking">احجز موعدك</a>
+</div></header>
+
+<div class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="pill">● متاح اليوم — ٣ مواعيد فقط</span>
+    <h1>ابتسامتك تبدأ<br><span>بزيارة واحدة</span></h1>
+    <p class="lead">عيادة أسنان في المهندسين، أجهزة حديثة، تعقيم كامل، وأسعار واضحة قبل ما تبدأ. احجز في دقيقة من غير مكالمات.</p>
+    <div class="cta"><a class="btn" href="#booking">احجز الآن</a><a class="btn ghost" href="https://wa.me/201000000000">كلّمنا واتساب</a></div>
+  </div>
+  <div class="hero-card">
+    <div class="row"><div><b>كشف وتشخيص</b><br><span style="color:#5b7378;font-size:13px">٢٠ دقيقة</span></div><span class="slot">اليوم ٦:٣٠ م</span></div>
+    <div class="row"><div><b>تنظيف وتلميع</b><br><span style="color:#5b7378;font-size:13px">٤٠ دقيقة</span></div><span class="slot">اليوم ٧:١٥ م</span></div>
+    <div class="row"><div><b>حشو تجميلي</b><br><span style="color:#5b7378;font-size:13px">٤٥ دقيقة</span></div><span class="slot">غدًا ١٢:٠٠ م</span></div>
+    <div class="row"><div><b>تبييض بالليزر</b><br><span style="color:#5b7378;font-size:13px">٦٠ دقيقة</span></div><span class="slot">غدًا ٥:٠٠ م</span></div>
+  </div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="sec-head"><h2>خدماتنا</h2><p>كل حاجة تحتاجها في مكان واحد، من الكشف للتبييض.</p></div>
+  <div class="cards">
+    <div class="card"><div class="ic">🦷</div><h3>كشف وتشخيص</h3><p>أشعة رقمية وشرح كامل للحالة والخطة والسعر قبل أي إجراء.</p></div>
+    <div class="card"><div class="ic">✨</div><h3>تبييض بالليزر</h3><p>جلسة واحدة، نتيجة واضحة، وبدون حساسية بأحدث أجهزة التبييض.</p></div>
+    <div class="card"><div class="ic">🛠️</div><h3>حشو وتركيبات</h3><p>حشو تجميلي بلون السن وتركيبات زيركون بضمان ٥ سنوات.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap about">
+  <div class="photo"></div>
+  <div>
+    <h2 style="font-size:30px">ليه المرضى بيختارونا؟</h2>
+    <ul class="checks">
+      <li><i>✓</i> مواعيد دقيقة — مش هتستنى أكتر من ١٠ دقايق</li>
+      <li><i>✓</i> سعر مكتوب قبل العلاج، مفيش مفاجآت</li>
+      <li><i>✓</i> تعقيم فردي لكل أداة ولكل مريض</li>
+      <li><i>✓</i> تقسيط بدون فوايد على العلاج الطويل</li>
+    </ul>
+    <div class="cta"><a class="btn" href="#booking">احجز موعدك</a></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap"><div class="booking" id="booking">
+  <div>
+    <h2>احجز في دقيقة</h2>
+    <p>سيب اسمك ورقمك، وهنكلمك لتأكيد الميعاد. الطلب بيوصلك على واتساب العيادة فورًا.</p>
+    <p style="margin-top:18px;font-size:14px">المواعيد: السبت – الخميس، ١١ص – ٩م<br>العنوان: ١٢ شارع شهاب، المهندسين، الجيزة</p>
+  </div>
+  <form onsubmit="event.preventDefault();this.querySelector('.done').style.display='block';">
+    <input placeholder="الاسم بالكامل" required>
+    <input placeholder="رقم الموبايل" required inputmode="tel">
+    <select><option>كشف وتشخيص</option><option>تنظيف وتلميع</option><option>تبييض بالليزر</option><option>حشو وتركيبات</option></select>
+    <textarea rows="2" placeholder="ملاحظات (اختياري)"></textarea>
+    <button class="btn" type="submit">أرسل الطلب</button>
+    <div class="done" style="display:none;color:#9fe9e2;font-size:14px">تم استلام طلبك ✓ هنكلمك خلال ١٥ دقيقة.</div>
+  </form>
+</div></div></section>
+
+<footer><div class="wrap foot"><div>عيادة سمايل — المهندسين، الجيزة · ٠١٠٠ ٠٠٠ ٠٠٠٠</div><div>سياسة الخصوصية · الشروط · واتساب</div></div></footer>
+<a class="wa" href="https://wa.me/201000000000" aria-label="واتساب">💬</a>
+<div class="demo-tag">نموذج تجريبي — Kernelly</div>
+</body></html>
